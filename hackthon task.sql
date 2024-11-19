@@ -43,12 +43,6 @@ group by series_title,Released_Year
 order by Released_year,ratings;
 
 -- How can we rank different meta_score values based on the average gross  associated with each score, and display the results in order of success
-select distinct Series_Title,meta_score,avg(gross) as gross
-from hackathon
-where meta_score>=0 and gross>=0
-group by Series_Title,meta_score
-order by gross desc;
-
 select meta_score,round(avg(gross),0) as gross,
 dense_rank() over(order by avg(gross) asc) as success
 from hackathon
